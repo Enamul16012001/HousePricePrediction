@@ -5,3 +5,7 @@ Flask
 scikit-learn
 gunicorn
 seaborn
+fastapi
+pydantic
+uvicorn
+python-multipart
