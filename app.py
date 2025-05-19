@@ -10,7 +10,6 @@ import uvicorn
 from typing import List
 import os
 
-# Create the FastAPI app
 app = FastAPI()
 
 # Set up templates
@@ -20,11 +19,9 @@ templates = Jinja2Templates(directory="templates")
 regmodel = pickle.load(open('regmodel.pkl', 'rb'))
 scalar = pickle.load(open('scaling.pkl', 'rb'))
 
-# Define input data model for API
 class HouseData(BaseModel):
     data: dict
 
-# Define routes
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
@@ -55,7 +52,3 @@ async def predict(request: Request):
             "predicted_price": formatted_output
         }
     )
-
-
-if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
