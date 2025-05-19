@@ -1,42 +1,128 @@
 <!DOCTYPE html>
-<html >
+<html>
 
 <head>
   <meta charset="UTF-8">
-  <title>ML API</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <title>California House Price Prediction</title>
+  <link href="https://fonts.googleapis.com/css?family=Arimo|Pacifico|Hind:300|Open+Sans+Condensed:300" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arimo', sans-serif;
+      background: #f2f2f2;
+    }
 
-  
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+      font-size: 26px;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .description {
+      font-size: 0.85em;
+      color: #777;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .prediction-box {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #e0f7fa;
+      border: 1px solid #4db6ac;
+      text-align: center;
+      font-size: 1.2em;
+      color: #00695c;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      font-weight: bold;
+    }
+
+    .prediction-box span {
+      font-size: 1.6em;
+      display: block;
+      margin-top: 10px;
+      color: #004d40;
+    }
+  </style>
 </head>
 
 <body>
- <div class="login">
-	<h1>Boston House Price Prediction</h1>
+  <div class="container">
+    <h1>California House Price Prediction</h1>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-      <input type="text" name="CRIM" placeholder="CRIM" required="required" /><br>
-    	<input type="text" name="ZN" placeholder="ZN" required="required" /><br>
-        <input type="text" name="INDUS" placeholder="INDUS" required="required" /><br>
-        <input type="text" name="CHAS" placeholder="CHAS" required="required" /><br>
-        <input type="text" name="NOX" placeholder="NOX" required="required" /><br>
-        <input type="text" name="RM" placeholder="RM" required="required" /><br>
-        <input type="text" name="Age" placeholder="Age" required="required" /><br>
-        <input type="text" name="DIS" placeholder="DIS" required="required" /><br>
+    <form action="{{ url_for('predict')}}" method="post">
+      <input type="text" name="MedInc" placeholder="MedInc" required />
+      <div class="description">Median income in the block (in tens of thousands of dollars).</div>
 
+      <input type="text" name="HouseAge" placeholder="HouseAge" required />
+      <div class="description">Median age of the houses in the block.</div>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+      <input type="text" name="AveRooms" placeholder="AveRooms" required />
+      <div class="description">Average number of rooms per household.</div>
+
+      <input type="text" name="AveBedrms" placeholder="AveBedrms" required />
+      <div class="description">Average number of bedrooms per household.</div>
+
+      <input type="text" name="Population" placeholder="Population" required />
+      <div class="description">Population of the block.</div>
+
+      <input type="text" name="AveOccup" placeholder="AveOccup" required />
+      <div class="description">Average number of household members per home.</div>
+
+      <input type="text" name="Latitude" placeholder="Latitude" required />
+      <div class="description">Latitude coordinate of the block.</div>
+
+      <input type="text" name="Longitude" placeholder="Longitude" required />
+      <div class="description">Longitude coordinate of the block.</div>
+
+      <button type="submit">Predict</button>
     </form>
 
-   <br>
-   <br>
-  
-   
- </div>
- {{prediction_text}}
-
+    {% if predicted_price %}
+    <div class="prediction-box">
+      Predicted Median House Price:
+      <span>{{ predicted_price }}</span>
+    </div>
+    {% endif %}
+  </div>
 </body>
+
 </html>

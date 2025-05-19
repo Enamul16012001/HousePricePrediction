@@ -47,10 +47,15 @@ async def predict(request: Request):
     final_input = scalar.transform(np.array(data).reshape(1, -1))
     print(final_input)
     output = regmodel.predict(final_input)[0]
+    formatted_output = "${:,.2f}".format(output * 100000)
     return templates.TemplateResponse(
         "home.html",
-        {"request": request, "prediction_text": f"The House price prediction is {output}"}
+        {
+            "request": request,
+            "predicted_price": formatted_output
+        }
     )
+
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
