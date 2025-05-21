@@ -19,6 +19,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/Enamul16012001/HousePricePrediction.git
+cd HousePricePrediction
 ```
 
 Create a virtual environment and install dependencies:
