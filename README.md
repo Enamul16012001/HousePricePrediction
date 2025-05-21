@@ -27,11 +27,23 @@ git clone https://github.com/Enamul16012001/HousePricePrediction.git
 cd HousePricePrediction
 ```
 
-Create a virtual environment and install dependencies:
+Create a virtual environment:
 
+**Windows:**
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # On Windows: venv\Scripts\activate
+.venv\Scripts\activate
+```
+
+**macOS/Linux:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install Dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
