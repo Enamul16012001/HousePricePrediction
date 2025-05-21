@@ -3,6 +3,7 @@
 This project implements a linear regression model to predict house prices based on various features. The model is trained using the provided dataset and can be used to make predictions on new data.
 
 ## Table of Contents
+- [Live Demo](#live-demo)
 - [Local Setup](#local-setup)
   - [Training the Model](#training-the-model)
 - [Docker Setup](#docker-setup)
@@ -12,6 +13,10 @@ This project implements a linear regression model to predict house prices based 
   - [Pulling the Image](#pulling-the-image)
   - [Running the Container](#running-the-container)
 
+## Live Demo
+
+The application is deployed on Heroku and can be accessed at:
+[https://california-house-price-predict-04f87fa9ec9a.herokuapp.com](https://california-house-price-predict-04f87fa9ec9a.herokuapp.com)
 
 ## Local Setup
 
@@ -34,8 +39,20 @@ pip install -r requirements.txt
 
 To train the model, run the training script:
 
+#### On Windows:
 ```bash
 python train.py
+```
+
+#### On Ubuntu/Linux:
+```bash
+python3 train.py
+```
+
+If you encounter any issues on Ubuntu, ensure you have proper permissions:
+```bash
+chmod +x train.py
+python3 train.py
 ```
 
 ## Docker Setup
