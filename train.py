@@ -6,11 +6,11 @@ from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
-boston = fetch_california_housing()
+house = fetch_california_housing()
 
-dataset=pd.DataFrame(boston.data,columns=boston.feature_names)
+dataset=pd.DataFrame(house.data,columns=house.feature_names)
 
-dataset['Price']=boston.target
+dataset['Price']=house.target
 
 X=dataset.iloc[:,:-1]
 y=dataset.iloc[:,-1]
